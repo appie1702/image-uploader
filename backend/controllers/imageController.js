@@ -1,0 +1,62 @@
+const asyncHandler = require('express-async-handler')
+const Image = require('../models/imageModel');
+const User = require('../models/userModel');
+
+
+const uploadImage = asyncHandler(async(req,res)=>{
+
+    const {title,desc,url} = req.body;
+    console.log(title,desc,url)
+
+    if(!req.session.user){
+        throw new Error("Not logged in");
+        return;
+    }
+
+    if(!url || !title){
+        throw new Error("Please fill all the entries.")
+    }
+
+    const image = await Image.create({
+        title,
+        desc,
+        pic: url,
+        user: req.session.user
+    })
+
+    if(image){
+        res.status(201).json({
+            image
+        })
+    }else{
+        res.status(400);
+        throw new Error("Failed to upload the image")
+    }
+})
+
+
+const allimages = asyncHandler(async(req,res)=>{
+    
+    if(!req.session.user){
+        throw new Error("Not logged in");
+        return;
+    }
+
+    console.log(req.session.user)
+    
+    const allimages = await Image.find({user: req.session.user});
+
+    console.log(allimages)
+
+    if(!allimages){
+        throw new Error("No images found");
+        return;
+    }
+
+    res.status(200).json({
+        allimages
+    })
+})
+
+
+module.exports = {uploadImage, allimages}
