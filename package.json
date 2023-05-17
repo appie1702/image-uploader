@@ -11,6 +11,9 @@
   },
   "author": "arpit",
   "license": "ISC",
+  "engines": {
+    "node": "17.20.1"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
