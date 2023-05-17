@@ -8,30 +8,23 @@ import { selectImages } from '../reducers/ImagesReducer'
 
 const Images = () => {
 
-    const [loading, setloading] = useState(false)
     const [images, setimages] = useState([])
     const imagesReduced = useSelector(selectImages)
     
     
     useMemo(()=>{
-        const newimages = imagesReduced
-        setimages(newimages)
+        setimages(imagesReduced)
     },[imagesReduced])
 
-    console.log(imagesReduced)
 
   return (
     <div className='m-2'>
-        {loading ? (
-            <div className=' h-full flex flex-col items-center justify-center pt-8'>
-                <FaSpinner className='loading-images'/>            
-            </div>
-        ) : (
+        
             <>
                 {images.length == 0 ? (
-                    <div className='flex flex-col items-center justify-center'>
-                        <p className=" text-xl">No images uploaded yet</p> 
-                        <p className='text-xl'>Please upload images</p>
+                    <div className='flex flex-col items-center mt-10'>
+                        <p className=" text-xl">No images found yet</p> 
+                        <p className='text-xl'>Please wait or add a new image</p>
                     </div>
                 ) : (
                     <section className="text-gray-600 body-font">
@@ -46,7 +39,6 @@ const Images = () => {
                     </section>
                 )}
             </>
-        ) }
         
     </div>
   )

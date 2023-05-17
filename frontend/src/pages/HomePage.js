@@ -8,7 +8,7 @@ import { useHistory, Redirect } from 'react-router-dom'
 const HomePage = () => {
 
     const userContext = useContext(UserContext)
-    const [tab, settab] = useState(1)
+    const [tab, settab] = useState(2)
     const history = useHistory();
 
 

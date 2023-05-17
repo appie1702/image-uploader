@@ -8,12 +8,16 @@ const imageSchema = mongoose.Schema({
         type: String,
         required:true,
         },
+    viewcount: {
+        type: Number,
+        default: 0
+    },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
         },    
     },
-    { timestamps:true, }
+    { timestamps:true,}
 )
 
 const Image = mongoose.model("Image", imageSchema)

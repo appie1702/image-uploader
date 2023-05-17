@@ -10,7 +10,7 @@ export const fetchImages = ()=>{
                     "Content-type": "application/json",
                 },
             };
-            const allImages = await axios.get("/api/imageuploader", config)
+            const allImages = await axios.get("/api/images", config)
             
             if(!allImages){
                 console.log("No images in database")

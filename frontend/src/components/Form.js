@@ -68,20 +68,17 @@ const Form = () => {
             };
             
             const imagedata= await axios.post(
-                "/api/imageuploader",
+                "/api/images",
                 {title, desc, url},
                 config
                 );
 
                 
             dispatch(addImage(imagedata.data.image));
-            toast().success("Success", "Image uploaded with title and description").for(2000).show()
-    
 
             settitle("")
             setdesc("")
             seturl("")
-
             setsubmitload(false);
 
         } catch(error) {
@@ -125,11 +122,11 @@ const Form = () => {
                 {loading && <FaSpinner className='absolute right-3 top-2 loading-icon'/>}
             </div>
         </div>
-        <div className="flex items-center">
-            <button className="shadow bg-red-600 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded mt-4" type="button" onClick={submitHandler}>
+        <div className="flex items-center justify-center">
+            <button className="shadow bg-red-600 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded mt-4 mr-2" type="button" onClick={submitHandler}>
                 Upload
             </button>
-            {submitload && <FaSpinner className='absolute right-3 top-2 loading-icon'/>}
+            {submitload && <FaSpinner className='loading-icon-submit'/>}
         </div>
     </form>
   )

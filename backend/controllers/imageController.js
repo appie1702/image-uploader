@@ -59,4 +59,20 @@ const allimages = asyncHandler(async(req,res)=>{
 })
 
 
-module.exports = {uploadImage, allimages}
+const updateCount = asyncHandler( async(req,res)=>{
+    const {url} = req.body;
+
+    const result = await Image.findOneAndUpdate({pic: url}, {$inc:{viewcount : 1}}, {
+        new: true
+      });
+
+    if(!result){
+        throw new Error("updatecount error")
+        return;
+    }
+
+    res.status(200).json({result})
+})
+
+
+module.exports = {uploadImage, allimages, updateCount}

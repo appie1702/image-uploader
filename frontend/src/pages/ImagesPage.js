@@ -38,7 +38,7 @@ const ImagesPage = () => {
 
   return (
       <>
-        {userContext.email && (
+        {userContext.email ? (
           <div className=''>
             <div className=' flex items-end justify-between mb-2'>
               <div className=' bg-red-600 px-3 py-2 mx-2 text-xl font-bold rounded-lg'>ImageUploader</div>
@@ -50,12 +50,10 @@ const ImagesPage = () => {
             <hr/>
             <Images/>
           </div>
-        )}
-        {!userContext.email && (
+        ) : (
           <div className='min-h-screen flex flex-col items-center justify-center'>
-            <p className=" text-xl">You are not logged in</p> 
-            <p className='text-xl'>Please <button className='cursor-pointer font-semibold text-xl px-3 py-2 rounded-lg bg-slate-200 mx-1' onClick={()=>history.push("/")}>Go Back</button> and Sign in</p>
-          </div>
+          <p className='text-xl'>Hello!, Now please <button className='cursor-pointer font-semibold text-xl px-3 py-2 rounded-lg bg-slate-200 mx-1' onClick={()=>history.push("/")}>Sign in</button> to the website.</p>
+        </div>
         )}
       </>
   )

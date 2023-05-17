@@ -62,15 +62,14 @@ const Registration = () => {
 
             console.log(userdata);
             
-            toast().success('Success', 'You are registered!').for(2000).show();     
             setloading(false);
 
             setemail("")
             setname("")
             setpassword("")
             setconfirmpassword("")
-
-            history.push("/imgs");
+            toast().success('Registered!', 'Now Please login').for(2000).show();
+            history.push("/imgs")
 
         } catch(error) {
             console.log("catch")

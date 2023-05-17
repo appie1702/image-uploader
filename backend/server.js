@@ -50,7 +50,7 @@ app.use(express.json())
 
 
 app.use("/api/user", userRoutes);
-app.use("/api/imageuploader", imageRoutes);
+app.use("/api/images", imageRoutes);
 
 
 //always below declared paths
